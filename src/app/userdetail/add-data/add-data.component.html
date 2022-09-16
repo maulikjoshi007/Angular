@@ -1,0 +1,162 @@
+<div  fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
+<form [formGroup]="form" novalidate>
+
+    <mat-card class="mat-elevation-z8">
+  
+      <mat-table
+        #table
+        class="mat-elevation-z0"
+        [dataSource]="dataSource" [trackBy]="trackRows">
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index"> 
+            <ng-container [formGroup]="row">
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name"
+                  id="name_id_{{i}}"
+                  formControlName="name" required />
+                  <!-- <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+    class="alert alert-danger"> -->
+<!-- <mat-error *ngIf="name?.invalid"> -->
+  <mat-error *ngIf="name?.errors?.['required']">
+    Name is required.
+  </mat-error>
+<!-- </mat-error> -->
+                  <!-- </mat-error> -->
+                  <!-- <mat-error *ngIf="form.get('name')?.valid && form.get('name')?.touched">
+                    name error
+                  </mat-error> -->
+                  <!-- <div *ngIf="getControl.name.invalid" class="text-danger"> -->
+                    <!-- <div *ngIf="getControl.name.errors?.required">First Name is required.</div> -->
+                <!-- </div> -->
+                  <mat-error *ngIf="form.controls.name?.errors?.required">Name is Required</mat-error>
+                  <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error> -->
+              </mat-form-field>
+
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+  
+        <!-- E-Mail Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>E-Mail</mat-header-cell>
+          <mat-cell *matCellDef="let row; let i = index"> 
+            <ng-container [formGroup]="row">
+              <mat-form-field>
+                <mat-label>E-Mail</mat-label>
+                <input matInput placeholder="E-Mail"
+                  id="email_id_{{i}}"
+                  name="email_id_{{i}}"
+                  formControlName="email" required />
+                  <!-- <div *ngIf="f.email.errors && (f.email.dirty ||f.email.touched)">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email is invalid</div>
+                  </div> -->
+                  <mat-error *ngIf="f.email?.invalid">  
+                    <div *ngIf="f.email.errors?.required">Email is required</div>  
+                </mat-error>  
+              
+                <mat-error  *ngIf="form.get('email')?.errors?.email">this is errors</mat-error>
+                  <mat-error *ngIf="f.email?.errors && (f.email.dirty ||f.email.touched)">  
+                    <div *ngIf="f.email.errors?.required">Email is required</div>  
+                    <div *ngIf="f.email.errors?.email">Email is invalid</div>
+                 </mat-error>
+                  <!-- <div *ngIf="!ControlArray.valid && (ControlArray.dirty ||ControlArray.touched)">
+    <div [hidden]="!ControlArray.errors.required">
+      email is required
+    </div>
+    <div [hidden]="!email.errors.email">
+      invalid email id
+    </div>
+  </div> -->
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+
+         <!-- Password Column -->
+         <ng-container matColumnDef="password">
+            <mat-header-cell *matHeaderCellDef>Password</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index"> 
+              <ng-container [formGroup]="row">
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Password"
+                    id="password_id_{{i}}"
+                    name="password_id_{{i}}"
+                    type="password"
+                    formControlName="password" required />
+                </mat-form-field>
+               
+                <mat-error *ngIf="form.get('password')?.errors?.required">Password is required</mat-error>
+              </ng-container>
+            </mat-cell>
+          </ng-container>
+
+           <!-- Unit Column -->
+         <ng-container matColumnDef="confirmpassword">
+            <mat-header-cell *matHeaderCellDef>Confirm Password</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index"> 
+              <ng-container [formGroup]="row">
+                <mat-form-field>
+                  <mat-label>Confirm Password</mat-label>
+                  <input matInput placeholder="Confirm Password"
+                    id="confirmpassword_id_{{i}}"
+                    name="confirmpassword_id_{{i}}"
+                    type="password"
+                    formControlName="confirmpassword" required />
+                </mat-form-field>
+              </ng-container>
+            </mat-cell>
+          </ng-container>
+
+           <!-- Mobile Column -->
+         <ng-container matColumnDef="mobileno">
+            <mat-header-cell *matHeaderCellDef>Mobile No</mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index"> 
+              <ng-container [formGroup]="row">
+                <mat-form-field>
+                  <mat-label>Mobile No</mat-label>
+                  <input matInput placeholder="Mobile No"
+                    id="mobileno_id_{{i}}"
+                    type="number"
+                    formControlName="mobileno" />
+                    <!-- <mat-error *ngIf="this.form.get('mobileno')?.errors?.maxlength">obileno</mat-error> -->
+                </mat-form-field>
+              </ng-container>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Action Column -->
+        <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="primary" (click)="createRow()">
+                <mat-icon aria-label="Add">add</mat-icon>
+              </button>
+              <button mat-icon-button style="color:red" (click)="deleteRow(i)">
+                <mat-icon aria-label="delete">delete</mat-icon>
+              </button>
+            </mat-cell>
+        </ng-container>
+  
+        <!-- Header Declarations -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+         
+        <!-- Row Declarations -->
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+  
+      <mat-card-actions>
+        <button mat-raised-button color="primary"
+        [disabled]="!form.valid"(click)="submitData()">
+          Submit
+        </button>
+      </mat-card-actions>
+  
+    </mat-card>
+  </form>
+</div>
