@@ -19,11 +19,13 @@ export class AddDataComponent implements OnInit {
   displayedColumns = ['name', 'email', 'password' , 'confirmpassword','mobileno','Action'];
   dataSource: MatTableDataSource<AbstractControl>;
 
-  
   ngOnInit(): void {
   
   }
 
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.form.controls[controlName].hasError(errorName);
+  }
   get ControlArray() {
     return this.form.get('users') as FormArray;
   }
@@ -50,12 +52,20 @@ export class AddDataComponent implements OnInit {
     rows.push(
       this.fb.group({
         uid: this.nextUid(),
-        name:['',Validators.required],
+        name:['',[Validators.required, Validators.maxLength(5)]],
        email:['',[Validators.email,Validators.required]],
        password:['',Validators.required],
        confirmpassword:['',Validators.required],
        mobileno: ['',[Validators.maxLength(10),Validators.required]]
       })
+      // new FormGroup({
+      //   // uid: this.nextUid(),
+      //   name:new FormControl('',[Validators.required, Validators.maxLength(5)]),
+      //  email: new FormControl('', [Validators.email,Validators.required]),
+      //  password:new FormControl('',Validators.required),
+      //  confirmpassword:new FormControl('', Validators.required),
+      //  mobileno: new FormControl('',[Validators.maxLength(10),Validators.required])
+      // })
     );
   }
 
@@ -70,9 +80,10 @@ export class AddDataComponent implements OnInit {
     return this.form.controls;
   }
 
-  public hasError = (controlName: string, errorName: string) =>{
-    return this.form.controls[controlName].hasError(errorName);
-  }
+  // public hasError = (controlName: string, errorName: string) =>{
+  //   return this.form.controls[controlName].hasError(errorName);
+  // }
+  
   createRow() {
     this.addRow();
     this.table.renderRows();

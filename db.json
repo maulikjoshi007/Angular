@@ -1,12 +1,11 @@
 {
   "users": [
     {
-      "uid": 1,
-      "name": "joshi",
-      "email": "john@gmail.com",
-      "password": "123456",
-      "confirmpassword": "123456",
-      "mobileno": 7894561230112
+      "name": "asf",
+      "email": "abcd@gmail.com",
+      "password": "asf",
+      "confirmpassword": "asf",
+      "mobileno": 241
     }
   ]
 }

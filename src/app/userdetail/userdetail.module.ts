@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { UserdetailRoutingModule } from './userdetail-routing.module';
 import { DisplaydataComponent } from './displaydata/displaydata.component';
-import { AdddataComponent } from './adddata/adddata.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,12 +13,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { AddDataComponent } from './add-data/add-data.component'
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditdataComponent } from './editdata/editdata.component';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     DisplaydataComponent,
-    AdddataComponent,
-    AddDataComponent
+    AddDataComponent,
+    EditdataComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,9 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    // FlexLayoutModule,
     
   ]
 })

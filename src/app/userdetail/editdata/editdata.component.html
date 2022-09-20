@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Edit User Data</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formInstance">
+    <div>
+      <mat-form-field  class="fullWidth" appearance="outline">
+        <mat-label> Name *</mat-label>
+        <input matInput type="text" 
+        name="name" formControlName="name">
+        <mat-error *ngIf="
+        formInstance.get('name')?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Email *</mat-label>
+        <input matInput type="email" name="email" formControlName="email" />
+        <mat-error *ngIf="formInstance.get('email')?.invalid && formInstance.get('email')?.errors?.required">
+            email is required
+          </mat-error> 
+        <mat-error *ngIf="
+        formInstance.get('email')?.errors?.email">Please Enter Valid Email Address</mat-error>
+      </mat-form-field>
+    </div>
+
+
+      <div class="mt-5">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Password *</mat-label>
+          <input matInput type="text" name="password" formControlName="password" />
+          <mat-error *ngIf="
+          formInstance.get('password')?.errors?.required"> field password required</mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="mt-5">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Confirm Password *</mat-label>
+          <input matInput type="text" name="confirmpassword" formControlName="confirmpassword" />
+          <mat-error *ngIf="
+          formInstance.get('confirmpassword')?.errors?.required">field confirmpassword required</mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="mt-5">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Mobile No *</mat-label>
+          <input matInput type="number" name="mobileno" formControlName="mobileno" />
+          <mat-error *ngIf="
+          formInstance.get('mobileno')?.errors?.required">field mobileno required</mat-error>
+        </mat-form-field>
+      </div>
+  
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="formInstance.invalid"
+   (click)="save()"
+    cdkFocusInitial>Update</button>
+  <button mat-raised-button mat-dialog-close>cancel</button>
+
+</div>

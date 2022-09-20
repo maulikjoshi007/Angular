@@ -1,5 +1,6 @@
-<div  fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
-<form [formGroup]="form" novalidate>
+<div  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
+    <h3 fxLayout="row" fxFlex="40" fxLayoutAlign="space-around center">Add Data</h3>
+<form [formGroup]="form" novalidate fxFlex="60">
 
     <mat-card class="mat-elevation-z8">
   
@@ -18,12 +19,18 @@
                 <input matInput placeholder="Name"
                   id="name_id_{{i}}"
                   formControlName="name" required />
+                  <!-- <div *ngIf="getControl.name.invalid" class="text-danger">
+                    <div *ngIf="getControl.name.errors?.required">Name is required.</div>
+                    <div *ngIf="getControl.name.errors?.mmaxlength">Minimum 4 character are required.</div>
+                  </div> -->
                   <!-- <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-    class="alert alert-danger"> -->
-<!-- <mat-error *ngIf="name?.invalid"> -->
-  <mat-error *ngIf="name?.errors?.['required']">
+    class="alert alert-danger">Name is required
+    </mat-error> -->
+<mat-error *ngIf="form.get('name')?.invalid">name </mat-error>
+  <!-- <mat-error *ngIf="hasError('name', 'required')">
     Name is required.
-  </mat-error>
+  </mat-error> -->
+  <!-- <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 5 characters</mat-error> -->
 <!-- </mat-error> -->
                   <!-- </mat-error> -->
                   <!-- <mat-error *ngIf="form.get('name')?.valid && form.get('name')?.touched">
@@ -32,7 +39,8 @@
                   <!-- <div *ngIf="getControl.name.invalid" class="text-danger"> -->
                     <!-- <div *ngIf="getControl.name.errors?.required">First Name is required.</div> -->
                 <!-- </div> -->
-                  <mat-error *ngIf="form.controls.name?.errors?.required">Name is Required</mat-error>
+                  <!-- <mat-error *ngIf="form.controls.name?.errors?.required">Name is Required</mat-error>
+                  <mat-error *ngIf="form.controls.name?.errors?.maxlength">MAximum length is 5 character</mat-error> -->
                   <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error> -->
               </mat-form-field>
 
@@ -51,19 +59,24 @@
                   id="email_id_{{i}}"
                   name="email_id_{{i}}"
                   formControlName="email" required />
+                  <mat-error *ngIf="form.controls.email?.errors?.required">mobileno</mat-error>
+
+                  <!-- <mat-error *ngIf="getControl.email.invalid">
+                    email is required
+                  </mat-error>  -->
                   <!-- <div *ngIf="f.email.errors && (f.email.dirty ||f.email.touched)">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Email is invalid</div>
                   </div> -->
-                  <mat-error *ngIf="f.email?.invalid">  
-                    <div *ngIf="f.email.errors?.required">Email is required</div>  
-                </mat-error>  
+                  <!-- <mat-error *ngIf="form.get('email')?.invalid">  
+                    <div *ngIf="f.email?.invalid">Email is required</div>  
+                </mat-error>   -->
               
-                <mat-error  *ngIf="form.get('email')?.errors?.email">this is errors</mat-error>
+                <!-- <mat-error  *ngIf="form.get('email')?.errors?.email">this is errors</mat-error>
                   <mat-error *ngIf="f.email?.errors && (f.email.dirty ||f.email.touched)">  
                     <div *ngIf="f.email.errors?.required">Email is required</div>  
                     <div *ngIf="f.email.errors?.email">Email is invalid</div>
-                 </mat-error>
+                 </mat-error> -->
                   <!-- <div *ngIf="!ControlArray.valid && (ControlArray.dirty ||ControlArray.touched)">
     <div [hidden]="!ControlArray.errors.required">
       email is required
@@ -108,6 +121,8 @@
                     name="confirmpassword_id_{{i}}"
                     type="password"
                     formControlName="confirmpassword" required />
+                    <mat-error *ngIf="
+          form.get('confirmpassword')?.invalid">field confirmpassword required</mat-error>
                 </mat-form-field>
               </ng-container>
             </mat-cell>
@@ -124,7 +139,8 @@
                     id="mobileno_id_{{i}}"
                     type="number"
                     formControlName="mobileno" />
-                    <!-- <mat-error *ngIf="this.form.get('mobileno')?.errors?.maxlength">obileno</mat-error> -->
+                    <mat-error *ngIf="form.controls.mobileno?.errors?.maxlength">MaxLenght is 10.</mat-error>
+                    <!-- <mat-error *ngIf="ControlArray.controls.mobileno?.errors?.maxlength">mobileno</mat-error> -->
                 </mat-form-field>
               </ng-container>
             </mat-cell>
