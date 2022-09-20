@@ -1,11 +1,10 @@
 {
-  "users": [
-    {
-      "name": "asf",
-      "email": "abcd@gmail.com",
-      "password": "asf",
-      "confirmpassword": "asf",
-      "mobileno": 241
-    }
-  ]
+  "users": {
+    "uid": 1,
+    "name": "abcd",
+    "email": "abcd@gmail.com",
+    "password": "asdfasf",
+    "confirmpassword": "asfasf",
+    "mobileno": 12312444534
+  }
 }

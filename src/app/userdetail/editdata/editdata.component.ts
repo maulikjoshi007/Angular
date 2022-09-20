@@ -15,7 +15,7 @@ export class EditdataComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
      
     this.formInstance = new FormGroup({
-      // "uid":  new FormControl('', Validators.required),
+      "uid":  new FormControl('', Validators.required),
       "name": new FormControl('', Validators.required),
       "email": new FormControl('', [Validators.email,Validators.required]),
       "password": new FormControl('', Validators.required),

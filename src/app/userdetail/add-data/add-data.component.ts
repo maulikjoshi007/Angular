@@ -23,9 +23,7 @@ export class AddDataComponent implements OnInit {
   
   }
 
-  public hasError = (controlName: string, errorName: string) =>{
-    return this.form.controls[controlName].hasError(errorName);
-  }
+
   get ControlArray() {
     return this.form.get('users') as FormArray;
   }
@@ -52,38 +50,15 @@ export class AddDataComponent implements OnInit {
     rows.push(
       this.fb.group({
         uid: this.nextUid(),
-        name:['',[Validators.required, Validators.maxLength(5)]],
+        name:['',[Validators.required]],
        email:['',[Validators.email,Validators.required]],
        password:['',Validators.required],
        confirmpassword:['',Validators.required],
        mobileno: ['',[Validators.maxLength(10),Validators.required]]
       })
-      // new FormGroup({
-      //   // uid: this.nextUid(),
-      //   name:new FormControl('',[Validators.required, Validators.maxLength(5)]),
-      //  email: new FormControl('', [Validators.email,Validators.required]),
-      //  password:new FormControl('',Validators.required),
-      //  confirmpassword:new FormControl('', Validators.required),
-      //  mobileno: new FormControl('',[Validators.maxLength(10),Validators.required])
-      // })
     );
   }
-
-  get name() { return this.form.get('name'); }
-
-  
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
-  }
-
-  get getControl(){
-    return this.form.controls;
-  }
-
-  // public hasError = (controlName: string, errorName: string) =>{
-  //   return this.form.controls[controlName].hasError(errorName);
-  // }
-  
+ 
   createRow() {
     this.addRow();
     this.table.renderRows();
@@ -105,11 +80,9 @@ export class AddDataComponent implements OnInit {
 
   submitData(){
     console.log(this.form.value);
-  // var val={
-  //   user:this.form.value
-  // }
+ 
     this.service.SaveUserData(this.form.value.users).subscribe((res)=>{
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
       this.router.navigate(['UserData/DisplayData']);
     });
 

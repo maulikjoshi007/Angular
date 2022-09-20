@@ -45,7 +45,7 @@ export class DisplaydataComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.service.UpdateUserData(result).subscribe((result:any)=>{
-          alert("Update Succes"+JSON.stringify(result));
+          alert("User Updated Successfully");
           // this.dataSource.users=result;
 
           this.dataSource.data = this.dataSource.data.map((o:any) => {
